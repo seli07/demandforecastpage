@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // IMPORTANT: Change 'demand-forecasting-demo' to your actual GitHub repo name
 export default defineConfig({
   plugins: [react()],
-  base: '/demand-forecasting-demo/',
+  base: '/demandforecastpage/',
 })
