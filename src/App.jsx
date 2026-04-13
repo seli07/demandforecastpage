@@ -188,37 +188,6 @@ export default function DemandForecastingDemo() {
         </div>
       </div>
 
-      {/* Model Segmentation */}
-      <div style={{ background: COLORS.card, borderRadius: 10, border: `1px solid ${COLORS.cardBorder}`, padding: 20, marginBottom: 28 }}>
-        <div style={{ marginBottom: 14 }}>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Model Segmentation — Each Region × Work Type</div>
-          <div style={{ fontSize: 11, color: COLORS.textDim, marginTop: 2 }}>
-            {regionCount} regions × {SEGMENTS.length} segments = <span style={{ color: COLORS.accent, fontWeight: 700 }}>{totalModels} independent models</span>
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 4, height: 36, borderRadius: 6, overflow: "hidden", marginBottom: 10 }}>
-          {SEGMENTS.map((s, i) => {
-            const pcts = [30, 25, 18, 20, 7];
-            return (
-              <div key={s.label} style={{ width: `${pcts[i]}%`, background: s.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 600, color: COLORS.bg, minWidth: 0, overflow: "hidden" }}>
-                {pcts[i] >= 15 ? `${pcts[i]}%` : ""}
-              </div>
-            );
-          })}
-        </div>
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", fontSize: 11 }}>
-          {SEGMENTS.map(s => (
-            <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <div style={{ width: 8, height: 8, borderRadius: 2, background: s.color }} />
-              <span style={{ color: COLORS.textDim }}>{s.label}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize: 11, color: COLORS.textDim, marginTop: 12, fontStyle: "italic", lineHeight: 1.5 }}>
-          Segments shown are for telecom dispatch. In other industries, segmentation might be by product line, route type, service tier, customer class, or any operational dimension that drives distinct demand patterns. Each segment gets its own independently tuned NeuralProphet model.
-        </div>
-      </div>
-
       {/* Pipeline Steps */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>End-to-End Pipeline — % of Total Effort (Click to Explore)</div>
@@ -241,26 +210,6 @@ export default function DemandForecastingDemo() {
           At <strong>{(sparsity * 100).toFixed(0)}% sparsity</strong>, data cleaning and validation consumes <strong>{metrics.cleaning.pct}</strong> of total pipeline effort.
           Sparse segments produce wider confidence intervals (±{(8 + sparsity * 20).toFixed(0)} units) — this is honest uncertainty, not model failure.
           The NeuralProphet hyperparameter tuning across all {totalModels} model segments uses parallelized Optuna trials with GPU workers.
-        </div>
-      </div>
-
-      {/* Delivery Time Split */}
-      <div style={{ background: COLORS.card, borderRadius: 10, border: `1px solid ${COLORS.cardBorder}`, padding: 20, marginBottom: 20 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Time-of-Delivery Distribution (Example)</div>
-        <div style={{ display: "flex", gap: 4, height: 32, borderRadius: 6, overflow: "hidden" }}>
-          {[
-            { label: "Morning", pct: 35, color: "#22d3ee" },
-            { label: "Midday", pct: 28, color: "#818cf8" },
-            { label: "Afternoon", pct: 25, color: "#a78bfa" },
-            { label: "Evening", pct: 12, color: "#6366f1" },
-          ].map(s => (
-            <div key={s.label} style={{ width: `${s.pct}%`, background: s.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 600, color: COLORS.bg }}>
-              {s.pct}%
-            </div>
-          ))}
-        </div>
-        <div style={{ display: "flex", gap: 16, marginTop: 8, fontSize: 11, color: COLORS.textDim, justifyContent: "center", flexWrap: "wrap" }}>
-          {["Morning 6-10am", "Midday 10am-1pm", "Afternoon 1-5pm", "Evening 5-8pm"].map(l => <span key={l}>{l}</span>)}
         </div>
       </div>
 
