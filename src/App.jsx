@@ -159,7 +159,7 @@ export default function DemandForecastingDemo() {
         <MetricCard label="MAPE" value={metrics.validation.mape} sub="Mean Absolute % Error" color={parseFloat(metrics.validation.mape) > 15 ? COLORS.warn : COLORS.success} />
         <MetricCard label="CI Coverage" value={metrics.validation.coverage} sub="Prediction interval coverage" />
         <MetricCard label="Sparse Segments" value={metrics.validation.sparseSegments} sub={`of ${totalModels} total models`} color={metrics.validation.sparseSegments > 15 ? COLORS.warn : COLORS.text} />
-        <MetricCard label="HP Trials" value="200" sub="Optuna per model segment" />
+        <MetricCard label="HyperParameter Trials" value="200" sub="Optuna per model segment" />
       </div>
 
       {/* Forecast Chart */}
@@ -197,7 +197,7 @@ export default function DemandForecastingDemo() {
           <PipelineStep step={2} title="Cleaning & Validation" pct={metrics.cleaning.pct} active={activeStep} onClick={setActiveStep}
             details={{ Discrepancies: metrics.cleaning.discrepancies, Challenge: metrics.cleaning.challenge }} />
           <PipelineStep step={3} title="NeuralProphet Modeling" pct={metrics.modeling.pct} active={activeStep} onClick={setActiveStep}
-            details={{ "HP Trials": metrics.modeling.trials, "Total Models": `${totalModels}`, Parallelism: "GPU workers" }} />
+            details={{ "HyperParameter Trials": metrics.modeling.trials, "Total Models": `${totalModels}`, Parallelism: "GPU workers" }} />
           <PipelineStep step={4} title="Forecast & Deploy" pct={metrics.validation.pct} active={activeStep} onClick={setActiveStep}
             details={{ MAPE: metrics.validation.mape, "CI Coverage": metrics.validation.coverage }} />
         </div>
